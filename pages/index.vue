@@ -1,7 +1,17 @@
 <template>
   <div class="h-full w-full">
-    <p>
+    <LandingNavbar/>
+    <LandingHero/>
+    <LandingAbout/>
+    <LandingStats/>
+    <LandingFeature/>
+    <LandingStartup/>
+    <LandingCta/>
+    <LandingFoot/>
+    <!-- <p>
       <NuxtLink to="/about">About page</NuxtLink>
-    </p>
+    </p> -->
+
+    
   </div>
 </template>
