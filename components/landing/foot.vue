@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-gray-600 body-font bg-orange-400 relative">
+  <footer class="text-gray-600 body-font bg-white relative">
     <div
       class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col"
     >

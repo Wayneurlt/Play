@@ -144,6 +144,7 @@ declare global {
   const useNotivueKeyboard: typeof import('../../node_modules/notivue')['useNotivueKeyboard']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app/nuxt')['useNuxtApp']
   const useNuxtData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useNuxtData']
+  const useNuxtDevTools: typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']
   const usePopper: typeof import('../../node_modules/@nuxt/ui/dist/runtime/composables/usePopper')['usePopper']
   const usePreviewMode: typeof import('../../node_modules/nuxt/dist/app/composables/preview')['usePreviewMode']
   const usePrismaClient: typeof import('../../node_modules/@prisma/nuxt/dist/runtime/composables/usePrismaClient')['usePrismaClient']
@@ -361,6 +362,7 @@ declare module 'vue' {
     readonly useNotivueKeyboard: UnwrapRef<typeof import('../../node_modules/notivue')['useNotivueKeyboard']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useNuxtData']>
+    readonly useNuxtDevTools: UnwrapRef<typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']>
     readonly usePopper: UnwrapRef<typeof import('../../node_modules/@nuxt/ui/dist/runtime/composables/usePopper')['usePopper']>
     readonly usePreviewMode: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/preview')['usePreviewMode']>
     readonly usePrismaClient: UnwrapRef<typeof import('../../node_modules/@prisma/nuxt/dist/runtime/composables/usePrismaClient')['usePrismaClient']>
