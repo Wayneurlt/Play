@@ -11,7 +11,9 @@
     <!-- <p>
       <NuxtLink to="/about">About page</NuxtLink>
     </p> -->
-
+    <p>
+      <NuxtLink to="/contact">contact us</NuxtLink>
+    </p> 
     
   </div>
 </template>

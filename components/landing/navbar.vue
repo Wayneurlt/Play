@@ -42,7 +42,7 @@
           ></span>
         </NuxtLink>
         <NuxtLink
-          to="/programs"
+          to="/services"
           :class="[ 
             'relative font-semibold text-base transition-colors',
             { 'text-black': isScrolled, 'text-white': !isScrolled }
@@ -54,7 +54,7 @@
           ></span>
         </NuxtLink>
         <NuxtLink
-          to="/admissions"
+          to="/blog"
           :class="[ 
             'relative font-semibold text-base transition-colors',
             { 'text-black': isScrolled, 'text-white': !isScrolled }

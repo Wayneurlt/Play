@@ -1,8 +1,8 @@
 <template>
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-orange-100 ">
         <div class="container px-4 py-10 lg:py-16 mx-auto lg:flex lg:items-center lg:justify-between">
-            <h2 class="text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            <h2 class="text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl">
                 Join us and get the update from anywhere
             </h2>
 
@@ -15,7 +15,7 @@
                     </button>
                 </div>
 
-                <p class="mt-3 text-sm text-gray-500 dark:text-gray-300">Attention! Offer expires in 30 days. Make sure not to miss this opportunity</p>
+                <!-- <p class="mt-3 text-sm text-gray-500 dark:text-gray-300">Attention! Offer expires in 30 days. Make sure not to miss this opportunity</p> -->
             </div>
         </div>
     </section>

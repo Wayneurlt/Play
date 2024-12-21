@@ -86,7 +86,7 @@ import { ref, computed, onMounted } from "vue";
 const videos = [
   {
     src: "/videos/green.mp4", // Local video path
-    text: "Welcome to Our Play Group!", // Main heading
+    text: "Welcome to The Play Group!", // Main heading
     subText: "Learn. Play. Grow.", // Subheading
   },
   {
