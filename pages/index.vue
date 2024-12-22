@@ -12,7 +12,7 @@
       <NuxtLink to="/about">About page</NuxtLink>
     </p> -->
     <p>
-      <NuxtLink to="/contact">contact us</NuxtLink>
+      <NuxtLink to="/contact"></NuxtLink>
     </p> 
     
   </div>

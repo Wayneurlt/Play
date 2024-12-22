@@ -1,4 +1,4 @@
 <template>
-  <LandingNavbar/>
-  <LandingBg/>
+ <LandingNavbar/>
+ <LandingBg/>
 </template>

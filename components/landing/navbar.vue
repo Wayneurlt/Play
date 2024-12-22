@@ -8,7 +8,7 @@
       },
     ]"
   >
-    <div class="flex justify-between w-full place-items-center">
+    <div class="flex justify-between w-full items-center">
       <!-- Logo with Conditional Rendering -->
       <NuxtLink to="/" class="flex items-center">
         <ClientOnly>
@@ -27,14 +27,42 @@
         </ClientOnly>
       </NuxtLink>
 
-      <div class="flex items-center gap-5">
-        <!-- Dynamic Text Color with Hover Line -->
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden p-2 text-white bg-black rounded-md"
+        @click="toggleMobileMenu"
+        aria-label="Toggle Mobile Menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6h16.5M3.75 12h16.5M3.75 18h16.5"
+          />
+        </svg>
+      </button>
+
+      <!-- Navigation Links -->
+      <div
+        :class="[
+          'lg:flex items-center gap-5',
+          mobileMenuOpen ? 'block absolute top-full left-0 w-full bg-white z-[999] p-4 shadow-lg' : 'hidden lg:block'
+        ]"
+      >
         <NuxtLink
           to="/about"
           :class="[ 
-            'relative font-semibold text-base transition-colors',
-            { 'text-black': isScrolled, 'text-white': !isScrolled }
+            'relative font-semibold text-base transition-colors block lg:inline',
+            mobileMenuOpen ? 'text-black' : isScrolled ? 'text-black' : 'text-white'
           ]"
+          @click="closeMobileMenu"
         >
           ABOUT
           <span
@@ -44,9 +72,10 @@
         <NuxtLink
           to="/services"
           :class="[ 
-            'relative font-semibold text-base transition-colors',
-            { 'text-black': isScrolled, 'text-white': !isScrolled }
+            'relative font-semibold text-base transition-colors block lg:inline',
+            mobileMenuOpen ? 'text-black' : isScrolled ? 'text-black' : 'text-white'
           ]"
+          @click="closeMobileMenu"
         >
           SERVICES
           <span
@@ -56,9 +85,10 @@
         <NuxtLink
           to="/blog"
           :class="[ 
-            'relative font-semibold text-base transition-colors',
-            { 'text-black': isScrolled, 'text-white': !isScrolled }
+            'relative font-semibold text-base transition-colors block lg:inline',
+            mobileMenuOpen ? 'text-black' : isScrolled ? 'text-black' : 'text-white'
           ]"
+          @click="closeMobileMenu"
         >
           BLOG
           <span
@@ -68,9 +98,10 @@
         <NuxtLink
           to="/contact"
           :class="[ 
-            'relative font-semibold text-base transition-colors',
-            { 'text-black': isScrolled, 'text-white': !isScrolled }
+            'relative font-semibold text-base transition-colors block lg:inline',
+            mobileMenuOpen ? 'text-black' : isScrolled ? 'text-black' : 'text-white'
           ]"
+          @click="closeMobileMenu"
         >
           CONTACT US
           <span
@@ -86,6 +117,15 @@
 import { ref, onMounted, computed } from "vue";
 
 let isScrolled = ref(false);
+let mobileMenuOpen = ref(false);
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+};
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false;
+};
 
 onMounted(() => {
   window.addEventListener("scroll", () => {
@@ -108,5 +148,17 @@ const isDark = computed({
 /* Hover Effect */
 a:hover span {
   width: 100%; /* Make the line span full width on hover */
+}
+
+/* Mobile Menu */
+@media (max-width: 1024px) {
+  nav div {
+    position: relative;
+  }
+
+  /* Ensure proper spacing for mobile links */
+  nav div a {
+    padding: 0.5rem 0;
+  }
 }
 </style>
