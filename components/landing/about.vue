@@ -1,12 +1,12 @@
 <template>
   <section class="bg-green-100">
-    <div
-      class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
-    >
-      <div class="font-light text-black sm:text-lg">
-        <h2
-          class="mb-4 text-4xl tracking-tight font-semibold text-black font-sans"
-        >
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+      <div 
+        class="font-light text-black sm:text-lg"
+        data-aos="fade-right"
+        data-aos-duration="1000"
+      >
+        <h2 class="mb-4 text-4xl tracking-tight font-semibold text-black font-sans">
           Transforming Mobile Experiences
           <span class="text-orange-400">Across Africa</span>
         </h2>
@@ -24,7 +24,12 @@
           empower millions across Africa and beyond.
         </p>
       </div>
-      <div class="grid grid-cols-2 gap-4 mt-8">
+      <div 
+        class="grid grid-cols-2 gap-4 mt-8"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        data-aos-delay="300"
+      >
         <img
           class="w-full h-auto lg:h-72 rounded-lg"
           src="/assets/images/boost.jpg"
@@ -39,3 +44,17 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { onMounted } from 'vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+onMounted(() => {
+  AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100
+  })
+})
+</script>

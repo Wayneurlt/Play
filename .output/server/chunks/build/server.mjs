@@ -708,22 +708,22 @@ const _routes = [
   {
     name: "about",
     path: "/about",
-    component: () => import('./about-5EfqGCYf.mjs').then((m) => m.default || m)
+    component: () => import('./about-CArXCr0z.mjs').then((m) => m.default || m)
   },
   {
     name: "blog",
     path: "/blog",
-    component: () => import('./blog-CZ2Cx9Jp.mjs').then((m) => m.default || m)
+    component: () => import('./blog--Jo-jXfp.mjs').then((m) => m.default || m)
   },
   {
     name: "contact",
     path: "/contact",
-    component: () => import('./contact-BjJAN_Sx.mjs').then((m) => m.default || m)
+    component: () => import('./contact-r7NhTTEL.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-OBhsFaEY.mjs').then((m) => m.default || m)
+    component: () => import('./index-AdXUxVPd.mjs').then((m) => m.default || m)
   },
   {
     name: "portfolio",
@@ -733,7 +733,7 @@ const _routes = [
   {
     name: "services",
     path: "/services",
-    component: () => import('./services-B0Qu4stG.mjs').then((m) => m.default || m)
+    component: () => import('./services-DwPhepyT.mjs').then((m) => m.default || m)
   }
 ];
 const _wrapIf = (component, props, slots) => {

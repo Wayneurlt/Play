@@ -1,17 +1,29 @@
 <template>
   <section class="w-full px-6 py-12 mx-auto lg:py-16 bg-blue-100">
     <h3
+      data-aos="zoom-in"
+      data-aos-duration="1000"
       class="font-serif text-3xl text-black capitalize md:text-4xl lg:text-5xl text-center"
     >
       Explore Our Dynamic Offerings
     </h3>
-    <p class="text-center text-gray-600 mb-4">
+    <p 
+      data-aos="zoom-in"
+      data-aos-duration="1000"
+      data-aos-delay="200"
+      class="text-center text-gray-600 mb-4"
+    >
       Delve into our diverse range of mobile-centric services, each crafted to
       elevate engagement, entertain, and inform your global audience.
     </p>
     <div class="mt-8 xl:flex xl:justify-center xl:gap-8">
       <!-- Highlighted Service -->
-      <div class="xl:w-1/2">
+      <div 
+        class="xl:w-1/2"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="400"
+      >
         <img
           class="object-cover w-full h-96"
           src="https://via.placeholder.com/800x450"
@@ -32,7 +44,12 @@
 
       <!-- Additional Services -->
       <div class="mt-8 space-y-8 xl:w-1/2 xl:mt-0">
-        <div class="md:flex md:items-center">
+        <div 
+          class="md:flex md:items-center"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="600"
+        >
           <img
             class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0"
             src="https://via.placeholder.com/800x450"
@@ -55,7 +72,12 @@
           </div>
         </div>
 
-        <div class="md:flex md:items-center">
+        <div 
+          class="md:flex md:items-center"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="800"
+        >
           <img
             class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0"
             src="https://via.placeholder.com/800x450"
@@ -78,7 +100,12 @@
           </div>
         </div>
 
-        <div class="md:flex md:items-center">
+        <div 
+          class="md:flex md:items-center"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="1000"
+        >
           <img
             class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0"
             src="https://via.placeholder.com/800x450"
@@ -102,3 +129,17 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { onMounted } from 'vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+onMounted(() => {
+  AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100
+  })
+})
+</script>

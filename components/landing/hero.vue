@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-screen overflow-hidden">
+  <div class="relative w-full h-screen overflow-hidden font-sans">
     <!-- Video Slider -->
     <div
       ref="sliderRef"
@@ -28,23 +28,37 @@
           v-if="currentIndex === index"
           class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4"
         >
-          <h1 class="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in">
+          <h1 
+            class="text-4xl md:text-6xl font-light tracking-wide mb-4"
+            data-aos="fade-down"
+            data-aos-duration="1000"
+          >
             {{ video.text }}
           </h1>
-          <p class="text-lg md:text-xl font-medium animate-fade-in delay-200">
+          <p 
+            class="text-lg md:text-xl font-normal tracking-wide"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
             {{ video.subText }}
           </p>
 
           <!-- Buttons -->
-          <div class="mt-6 space-x-4 animate-fade-in delay-400">
+          <div 
+            class="mt-6 space-x-4"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
             <button
-              class="px-6 py-3 bg-green-500 hover:bg-transparent text-white font-semibold rounded-lg transition-colors duration-300"
+              class="px-6 py-3 bg-green-500 hover:bg-transparent text-white font-normal tracking-wide rounded-lg transition-colors duration-300 border-2 border-transparent hover:border-white"
               @click="navigateTo('services')"
             >
               Services
             </button>
             <button
-              class="px-6 py-3 bg-orange-400 hover:bg-transparent text-white font-semibold rounded-lg transition-colors duration-300"
+              class="px-6 py-3 bg-orange-400 hover:bg-transparent text-white font-normal tracking-wide rounded-lg transition-colors duration-300 border-2 border-transparent hover:border-white"
               @click="navigateTo('about-us')"
             >
               About Us
@@ -57,7 +71,7 @@
     <!-- Navigation Buttons -->
     <button
       @click="onPrev"
-      class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-2xl hover:transform hover:-translate-x-2 transition-all duration-300 z-10"
+      class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-2xl hover:transform hover:-translate-x-2 transition-all duration-300 z-10 font-light"
       aria-label="Previous"
     >
       ←
@@ -68,7 +82,7 @@
 
     <button
       @click="onNext"
-      class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-2xl hover:transform hover:translate-x-2 transition-all duration-300 z-10"
+      class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-2xl hover:transform hover:translate-x-2 transition-all duration-300 z-10 font-light"
       aria-label="Next"
     >
       →
@@ -80,62 +94,66 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // Array to define the videos and their respective text content
 const videos = [
   {
-    src: "/videos/green.mp4", // Local video path
-    text: "Welcome to The Play Group!", // Main heading
-    subText: "Learn. Play. Grow.", // Subheading
+    src: "/videos/green.mp4",
+    text: "Welcome to The Play Group!",
+    subText: "Learn. Play. Grow.",
   },
   {
-    src: "/videos/blue.mp4", // Local video path
-    text: "Redefined African Mobile Solutions!", // Main heading
-    subText: "Where imagination meets reality.", // Subheading
+    src: "/videos/blue.mp4",
+    text: "Redefined African Mobile Solutions!",
+    subText: "Where imagination meets reality.",
   },
   {
-    src: "/videos/orange.mp4", // Local video path
-    text: "Fostering Innovation!", // Main heading
-    subText: "Let's explore and create together.", // Subheading
+    src: "/videos/orange.mp4",
+    text: "Fostering Innovation!",
+    subText: "Let's explore and create together.",
   },
 ];
 
 const currentIndex = ref(0);
 
-// Style for the carousel sliding effect
 const carouselStyle = computed(() => ({
   transform: `translateX(-${currentIndex.value * 100}%)`,
 }));
 
-// Navigate to the previous slide
 function onPrev() {
   currentIndex.value = (currentIndex.value - 1 + videos.length) % videos.length;
+  refreshAOS();
 }
 
-// Navigate to the next slide
 function onNext() {
   currentIndex.value = (currentIndex.value + 1) % videos.length;
+  refreshAOS();
 }
 
-// Navigation functionality for buttons
 function navigateTo(section: string) {
   if (section === "services") {
-    // Navigate to services section
     window.location.href = "/services";
   } else if (section === "about-us") {
-    // Navigate to about us section
     window.location.href = "/about-us";
   }
 }
 
-// Autoplay functionality
+// Refresh AOS animations when slides change
+function refreshAOS() {
+  setTimeout(() => {
+    AOS.refresh();
+  }, 100);
+}
+
 let autoplayInterval: number | null = null;
 
 function startAutoplay() {
   autoplayInterval = setInterval(() => {
     onNext();
-  }, 15000); // Change slides every 15 seconds
+  }, 15000);
 }
 
 function stopAutoplay() {
@@ -145,34 +163,27 @@ function stopAutoplay() {
   }
 }
 
-// Start autoplay on component mount
 onMounted(() => {
+  AOS.init({
+    duration: 1000,
+    once: false,
+    mirror: true
+  });
   startAutoplay();
+});
+
+onUnmounted(() => {
+  stopAutoplay();
 });
 </script>
 
-<style scoped>
-/* Tailwind Animations */
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+<style>
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+.font-sans {
+  font-family: 'Inter', sans-serif;
 }
 
-.animate-fade-in {
-  animation: fade-in 1s ease forwards;
-}
-
-.animate-fade-in.delay-200 {
-  animation-delay: 0.2s;
-}
-
-.animate-fade-in.delay-400 {
-  animation-delay: 0.4s;
-}
+/* Remove the keyframes as we're using AOS now */
 </style>
