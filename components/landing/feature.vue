@@ -25,7 +25,7 @@
         data-aos-delay="400"
       >
         <img
-          class="object-cover w-full h-96"
+          class="object-cover w-full h-96 rounded-xl"
           src="https://via.placeholder.com/800x450"
           alt="Mobile Infotainment Services"
         />
@@ -51,7 +51,7 @@
           data-aos-delay="600"
         >
           <img
-            class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0"
+            class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0 rounded-xl"
             src="https://via.placeholder.com/800x450"
             alt="Mobile Gaming Solutions"
           />
@@ -79,7 +79,7 @@
           data-aos-delay="800"
         >
           <img
-            class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0"
+            class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0 rounded-xl"
             src="https://via.placeholder.com/800x450"
             alt="SMS Aggregation Services"
           />
@@ -107,7 +107,7 @@
           data-aos-delay="1000"
         >
           <img
-            class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0"
+            class="object-cover w-full h-56 md:h-48 md:w-80 shrink-0 rounded-xl"
             src="https://via.placeholder.com/800x450"
             alt="Mobile Entertainment Services"
           />

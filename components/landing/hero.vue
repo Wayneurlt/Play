@@ -1,6 +1,5 @@
 <template>
   <div class="relative w-full h-screen overflow-hidden font-sans">
-    <!-- Video Slider -->
     <div
       ref="sliderRef"
       class="relative flex w-full h-full transition-transform duration-[2100ms] ease-in-out"
@@ -11,73 +10,59 @@
         :key="index"
         class="relative w-full h-full flex-none"
       >
-        <!-- Video -->
         <video
+          ref="videoRefs"
           :src="video.src"
           class="absolute top-0 left-0 w-full h-full object-cover"
           autoplay
           muted
           loop
+          playsinline
+          preload="auto"
+          :key="`video-${index}`"
+          @loadeddata="handleVideoLoaded(index)"
+          @error="handleVideoError(index)"
+          @ended="handleVideoEnd"
+          @canplay="handleCanPlay(index)"
         ></video>
 
-        <!-- Overlay -->
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
-        <!-- Text Content -->
         <div
           v-if="currentIndex === index"
           class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4"
         >
-          <h1 
-            class="text-4xl md:text-6xl font-light tracking-wide mb-4"
-            data-aos="fade-down"
-            data-aos-duration="1000"
-          >
+          <h1 class="text-4xl md:text-6xl font-light tracking-wide mb-4">
             {{ video.text }}
           </h1>
-          <p 
-            class="text-lg md:text-xl font-normal tracking-wide"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-          >
+          <p class="text-lg md:text-xl font-normal tracking-wide">
             {{ video.subText }}
           </p>
 
-          <!-- Buttons -->
-          <div 
-            class="mt-6 space-x-4"
-            data-aos="zoom-in"
-            data-aos-duration="1000"
-            data-aos-delay="400"
-          >
-            <button
+          <div class="mt-6 space-x-4">
+            <NuxtLink
+              to="/services"
               class="px-6 py-3 bg-green-500 hover:bg-transparent text-white font-normal tracking-wide rounded-lg transition-colors duration-300 border-2 border-transparent hover:border-white"
-              @click="navigateTo('services')"
             >
               Services
-            </button>
-            <button
+            </NuxtLink>
+            <NuxtLink
+              to="/about-us"
               class="px-6 py-3 bg-orange-400 hover:bg-transparent text-white font-normal tracking-wide rounded-lg transition-colors duration-300 border-2 border-transparent hover:border-white"
-              @click="navigateTo('about-us')"
             >
               About Us
-            </button>
+            </NuxtLink>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Navigation Buttons -->
     <button
       @click="onPrev"
       class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-2xl hover:transform hover:-translate-x-2 transition-all duration-300 z-10 font-light"
       aria-label="Previous"
     >
       ←
-      <span
-        class="absolute inset-y-0 left-0 w-0 h-0.5 bg-white group-hover:w-4 transition-all duration-300"
-      ></span>
     </button>
 
     <button
@@ -86,104 +71,161 @@
       aria-label="Next"
     >
       →
-      <span
-        class="absolute inset-y-0 right-0 w-0 h-0.5 bg-white group-hover:w-4 transition-all duration-300"
-      ></span>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
 
-// Array to define the videos and their respective text content
+const currentIndex = ref(0);
+const videoRefs = ref<HTMLVideoElement[]>([]);
+const videosLoaded = ref<boolean[]>([]);
+
+// Import videos from assets
+const greenVideo = new URL('@/assets/videos/green.mp4', import.meta.url).href;
+const blueVideo = new URL('@/assets/videos/blue.mp4', import.meta.url).href;
+const orangeVideo = new URL('@/assets/videos/orange.mp4', import.meta.url).href;
+
 const videos = [
   {
-    src: "/videos/green.mp4",
+    src: greenVideo,
     text: "Welcome to The Play Group!",
     subText: "Learn. Play. Grow.",
   },
   {
-    src: "/videos/blue.mp4",
+    src: blueVideo, 
     text: "Redefined African Mobile Solutions!",
     subText: "Where imagination meets reality.",
   },
   {
-    src: "/videos/orange.mp4",
+    src: orangeVideo,
     text: "Fostering Innovation!",
     subText: "Let's explore and create together.",
   },
 ];
 
-const currentIndex = ref(0);
+// Initialize videosLoaded array
+onMounted(() => {
+  videosLoaded.value = new Array(videos.length).fill(false);
+});
 
 const carouselStyle = computed(() => ({
   transform: `translateX(-${currentIndex.value * 100}%)`,
 }));
 
+function handleVideoLoaded(index: number) {
+  videosLoaded.value[index] = true;
+  console.log(`Video ${index} loaded successfully`);
+}
+
+function handleVideoError(index: number) {
+  console.error(`Error loading video ${index}:`, videos[index].src);
+}
+
+function handleCanPlay(index: number) {
+  const video = videoRefs.value[index];
+  if (video) {
+    video.play().catch(error => {
+      console.error('Auto-play prevented:', error);
+      // Retry play on user interaction
+      document.addEventListener('click', () => {
+        video.play().catch(e => console.error('Retry play failed:', e));
+      }, { once: true });
+    });
+  }
+}
+
+function handleVideoEnd(event: Event) {
+  const video = event.target as HTMLVideoElement;
+  if (video) {
+    video.currentTime = 0;
+    video.play().catch(error => {
+      console.error('Replay prevented:', error);
+    });
+  }
+}
+
+async function playCurrentVideo() {
+  await nextTick();
+  const currentVideo = videoRefs.value[currentIndex.value];
+  if (currentVideo) {
+    try {
+      currentVideo.currentTime = 0;
+      await currentVideo.play();
+    } catch (error) {
+      console.error('Play prevented:', error);
+    }
+  }
+}
+
 function onPrev() {
   currentIndex.value = (currentIndex.value - 1 + videos.length) % videos.length;
-  refreshAOS();
+  playCurrentVideo();
 }
 
 function onNext() {
   currentIndex.value = (currentIndex.value + 1) % videos.length;
-  refreshAOS();
-}
-
-function navigateTo(section: string) {
-  if (section === "services") {
-    window.location.href = "/services";
-  } else if (section === "about-us") {
-    window.location.href = "/about-us";
-  }
-}
-
-// Refresh AOS animations when slides change
-function refreshAOS() {
-  setTimeout(() => {
-    AOS.refresh();
-  }, 100);
+  playCurrentVideo();
 }
 
 let autoplayInterval: number | null = null;
 
 function startAutoplay() {
-  autoplayInterval = setInterval(() => {
+  if (autoplayInterval) return;
+  
+  autoplayInterval = window.setInterval(() => {
     onNext();
   }, 15000);
 }
 
 function stopAutoplay() {
   if (autoplayInterval) {
-    clearInterval(autoplayInterval);
+    window.clearInterval(autoplayInterval);
     autoplayInterval = null;
   }
 }
 
+// Handle visibility change
+function handleVisibilityChange() {
+  if (document.hidden) {
+    stopAutoplay();
+  } else {
+    startAutoplay();
+  }
+}
+
 onMounted(() => {
-  AOS.init({
-    duration: 1000,
-    once: false,
-    mirror: true
-  });
+  // Initialize video loading state
+  videosLoaded.value = new Array(videos.length).fill(false);
+  
+  // Start autoplay
   startAutoplay();
+  
+  // Add visibility change listener
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  
+  // Initial video loading
+  nextTick(() => {
+    videoRefs.value.forEach((video, index) => {
+      if (video) {
+        video.load(); // Explicitly load the video
+        handleCanPlay(index);
+      }
+    });
+  });
 });
 
 onUnmounted(() => {
   stopAutoplay();
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
 });
 </script>
 
-<style>
-/* Import Inter font from Google Fonts */
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
 .font-sans {
   font-family: 'Inter', sans-serif;
 }
-
-/* Remove the keyframes as we're using AOS now */
 </style>

@@ -27,7 +27,7 @@
       <img
         alt="Startup Portfolio"
         src="/assets/images/zurr.png"
-        class="h-96 w-full rounded-xl object-cover shadow-xl transition-transform duration-[2000ms] ease-in-out transform group-hover:scale-105 dark:shadow-gray-700/25"
+        class="h-96 w-full  object-cover shadow-xl transition-transform duration-[2000ms] ease-in-out transform group-hover:scale-105 dark:shadow-gray-700/25"
       />
       <div class="p-4">
         <a href="https://zuri.health/">
@@ -54,7 +54,7 @@
       <img
         alt="Startup Portfolio"
         src="/assets/images/date.png"
-        class="h-96 w-full rounded-xl object-cover shadow-xl transition-transform duration-[2000ms] ease-in-out transform group-hover:scale-105 dark:shadow-gray-700/25"
+        class="h-96 w-full  object-cover shadow-xl transition-transform duration-[2000ms] ease-in-out transform group-hover:scale-105 dark:shadow-gray-700/25"
       />
       <div class="p-4">
         <a href="https://theplaygroup.net/">
@@ -74,12 +74,12 @@
       class="group relative overflow-hidden"
       data-aos="fade-left"
       data-aos-duration="1000"
-      data-aos-delay="600"
+      data-aos-delay="400"
     >
       <img
         alt="Startup Portfolio"
         src="https://via.placeholder.com/800x450"
-        class="h-96 w-full rounded-xl object-cover shadow-xl transition-transform duration-[2000ms] ease-in-out transform group-hover:scale-105 dark:shadow-gray-700/25"
+        class="h-96 w-full  object-cover shadow-xl transition-transform duration-[2000ms] ease-in-out transform group-hover:scale-105 dark:shadow-gray-700/25"
       />
       <div class="p-4">
         <a href="https://byzara.life/">
