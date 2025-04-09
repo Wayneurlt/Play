@@ -2,6 +2,12 @@
 {
   "compilerOptions": {
     "paths": {
+      "nitropack/types": [
+        "../node_modules/nitropack/types"
+      ],
+      "nitropack/runtime": [
+        "../node_modules/nitropack/runtime"
+      ],
       "nitropack": [
         "../node_modules/nitropack"
       ],
@@ -44,6 +50,9 @@
       "nuxt": [
         "../node_modules/nuxt"
       ],
+      "vite/client": [
+        "../node_modules/vite/client"
+      ],
       "~": [
         ".."
       ],
@@ -67,6 +76,9 @@
       ],
       "@@/*": [
         "../*"
+      ],
+      "#shared": [
+        "../shared"
       ],
       "assets": [
         "../assets"
@@ -113,6 +125,9 @@
       "#vue-router": [
         "../node_modules/vue-router"
       ],
+      "#unhead/composables": [
+        "../node_modules/nuxt/dist/head/runtime/composables/v3"
+      ],
       "#imports": [
         "./imports"
       ],
@@ -123,16 +138,16 @@
         "./tailwind.config/*"
       ],
       "#app-manifest": [
-        "./manifest/meta/4300789d-ec04-48a1-abbc-90b593c75303.json"
+        "./manifest/meta/dev.json"
+      ],
+      "#components": [
+        "./components"
       ],
       "#build": [
         "."
       ],
       "#build/*": [
         "./*"
-      ],
-      "#components": [
-        "./components"
       ]
     },
     "esModuleInterop": true,
@@ -193,6 +208,16 @@
     "../dist",
     "../node_modules",
     "../node_modules/nuxt/node_modules",
+    "../node_modules/@nuxt/icon/node_modules",
+    "../node_modules/@nuxtjs/color-mode/node_modules",
+    "../node_modules/@nuxtjs/tailwindcss/node_modules",
+    "../node_modules/@nuxt/ui/node_modules",
+    "../node_modules/@prisma/nuxt/node_modules",
+    "../node_modules/nuxt-auth-utils/node_modules",
+    "../node_modules/notivue/node_modules",
+    "../node_modules/@nuxt/image/node_modules",
+    "../node_modules/@nuxt/devtools/node_modules",
+    "../node_modules/@nuxt/telemetry/node_modules",
     "../node_modules/@nuxt/icon/runtime/server",
     "../node_modules/@nuxt/icon/dist/runtime/server",
     "../node_modules/@nuxtjs/color-mode/runtime/server",
