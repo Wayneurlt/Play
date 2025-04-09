@@ -1,1 +1,0 @@
-import{_}from"./DoZyRHeJ.js";import{_ as e}from"./BvcJ0_G0.js";import{_ as c,c as r,b as o,F as a,o as m}from"./0vII3YOq.js";import"./DWp6COvi.js";import".prisma/client/index-browser";const s={};function p(i,f){const n=_,t=e;return m(),r(a,null,[o(n),o(t)],64)}const b=c(s,[["render",p]]);export{b as default};
